@@ -63,6 +63,16 @@ class KalmanFilter {
 
   // measurement covariance matrix
   Eigen::MatrixXd R_;
+  
+  
+  
+  private:
+  /**
+  *   Common calculation for KF and EKF.
+  *   @param y.
+  */
+  void UpdateWithY(const Eigen::VectorXd &y);
+
 };
 
 #endif // KALMAN_FILTER_H_
