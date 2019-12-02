@@ -3,11 +3,13 @@
 #include "Eigen/Dense"
 #include "tools.h"
 
-using Eigen::MatrixXd;
-using Eigen::VectorXd;
 using std::cout;
 using std::endl;
 using std::vector;
+
+
+using Eigen::MatrixXd;
+using Eigen::VectorXd;
 
 /**
  * Constructor.
@@ -36,8 +38,9 @@ FusionEKF::FusionEKF() {
    * TODO: Finish initializing the FusionEKF.
    * TODO: Set the process and measurement noises
    */
-// Initializing P
+    // Define P
     ekf_.P_ = MatrixXd(4, 4);
+    // Initializing P
     ekf_.P_ << 1, 0, 0, 0,
               0, 1, 0, 0,
               0, 0, 1000, 0,
@@ -64,7 +67,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      * You'll need to convert radar from polar to cartesian coordinates.
      */
 
-     ekf_.x_ = VectorXd(4);
+    ekf_.x_ = VectorXd(4);
     ekf_.x_ << 1, 1, 1, 1;
 
     if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
@@ -72,9 +75,10 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       /**
       Convert radar from polar to cartesian coordinates and initialize state.
       */
-      double rho = measurement_pack.raw_measurements_[0]; // range
-  	  double phi = measurement_pack.raw_measurements_[1]; // bearing
+      double rho = measurement_pack.raw_measurements_[0];     // range
+  	  double phi = measurement_pack.raw_measurements_[1];     // bearing
   	  double rho_dot = measurement_pack.raw_measurements_[2]; // velocity of rho
+      
   	  // Coordinates convertion from polar to cartesian
   	  double x = rho * cos(phi);
       if ( x < 0.0001 ) {
