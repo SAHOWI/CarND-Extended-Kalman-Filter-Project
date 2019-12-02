@@ -70,8 +70,8 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 }
 
 
-// KalmanFilter::UpdateWithXY
-/*
+// KalmanFilter::UpdateWithY
+
 void KalmanFilter::UpdateWithY(const VectorXd &y){
   MatrixXd Ht = H_.transpose();
   MatrixXd S = H_ * P_ * Ht + R_;
@@ -83,4 +83,3 @@ void KalmanFilter::UpdateWithY(const VectorXd &y){
   MatrixXd I = MatrixXd::Identity(x_size, x_size);
   P_ = (I - K * H_) * P_;
 }
-*/
